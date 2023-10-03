@@ -10,15 +10,27 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-
-
-
-
     {
       path: '/login',
       name: 'container',
       component: () => import('../views/Login.vue')
+    },
+    
+    {
+      path: '/gestionuser',
+      name: 'GestionUser',
+      component: () => import('../views/GestionUser.vue')
+    },
+    {
+      path:'/:id/updateUser' ,
+      name: 'UserUpdate',
+      component: () => import('../views/UpdateUser.vue')
     }
+    
+    
+    
+    
+    
   ]
 })
 
