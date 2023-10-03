@@ -1,3 +1,7 @@
+
+EliseCity 
+Une application web pour faciliter le dépôt de réclamations citoyennes auprès des municipalités.
+
 # vuejs
 
 This template should help get you started developing with Vue 3 in Vite.
