@@ -24,7 +24,8 @@ const router = createRouter({
     {
       path:'/:id/updateUser' ,
       name: 'UserUpdate',
-      component: () => import('../views/UpdateUser.vue')
+      component: () => import('../views/UpdateUser.vue'),
+      props: true 
     }
     
     

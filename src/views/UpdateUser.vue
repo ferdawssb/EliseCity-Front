@@ -58,7 +58,6 @@
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 
@@ -78,13 +77,11 @@ export default {
   },
 
   methods: {
-
-
     updateUser() {
-
       const userId = this.id; // Utilisez this.id pour obtenir l'ID de l'utilisateur à mettre à jour
       axios
         .put(`https://localhost:7129/api/User/${userId}`, this.updatedUser)
+
         .then((response) => {
           console.log("Utilisateur mis à jour avec succès.", response.data);
           // Réinitialisez les champs de formulaire après la mise à jour réussie
@@ -95,14 +92,18 @@ export default {
             login: "",
             password: "",
           };
+          // Redirigez l'utilisateur vers la page "GestionUser"
+          this.$router.push({ name: "GestionUser" });
         })
         .catch((error) => {
-          console.error("Erreur lors de la mise à jour de l'utilisateur :", error);
+          console.error(
+            "Erreur lors de la mise à jour de l'utilisateur :",
+            error
+          );
         });
     },
   },
 };
-
 </script>
 
 <style>
