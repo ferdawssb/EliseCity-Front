@@ -13,18 +13,22 @@
               <th>Lastname</th>
               <th>Mobile</th>
               <th>Email</th>
-              <th>createAt</th>
+              <th>CreateAt</th>
+              <th>UpdateAt</th>
+
             </tr>
           </thead>
 
           <tbody>
             <tr v-for="(user, index) in User" :key="index">
+
               <td>{{ user.id }}</td>
               <td>{{ user.firstname }}</td>
               <td>{{ user.lastname }}</td>
               <td>{{ user.mobile }}</td>
               <td>{{ user.login }}</td>
               <td>{{ user.createAt }}</td>
+              <td>{{ user.updateAt}}</td>
 
               <td>
                 <button
