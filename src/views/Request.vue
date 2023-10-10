@@ -1,26 +1,33 @@
 <template>
   <div>
     <h2>Formulaire d'Insertion de Demande</h2>
-    <form  @submit.prevent="submitRequest" >
+    <form @submit.prevent="submitRequest">
       <label for="title">Titre</label>
-      <input type="text" id="title" v-model="model.composant.Title" >
+      <input type="text" 
+      id="title"
+      v-model="req.Title" />
 
       <label for="description">Description</label>
-      <textarea id="description" v-model="model.composant.Description"></textarea>
-
-      
+      <textarea
+        id="description"
+        v-model="req.Description"
+      ></textarea>
 
       <label for="requestType">Type de Demande</label>
-      <input type="text" id="requestType" v-model="model.composant.id_type" required >
+    <select id="requestType" v-model="req.id_type">
+      <option value="">Sélectionnez un type</option>
+      <option v-for="idType in idTypes" :key="idType">{{ idType }}</option>
+    </select>
+
 
       <label for="user">Nom de l'Utilisateur</label>
-      <input type="text" id="user" v-model="model.composant.Firstname" >
+      <input type="text" id="user" v-model="req.Firstname" />
 
       <label for="longitude">Longitude </label>
-      <input type="text" id="longitude" v-model="model.composant.Longitude" >
+      <input type="text" id="longitude" v-model="req.Longitude" />
 
       <label for="latitude">Latitude</label>
-      <input type="text" id="latitude" v-model="model.composant.Latitude" >
+      <input type="text" id="latitude" v-model="req.Latitude" />
 
       <button type="submit">Insérer</button>
     </form>
@@ -33,48 +40,66 @@ import axios from "axios";
 export default {
   data() {
     return {
-      model: {
-        composant: {
+    
+        req: {
           Title: "", // Correspond à la propriété Title de RequestDto
           Description: "", // Correspond à la propriété Description de RequestDto
           id_type: "", // Correspond à la propriété RequestType.title de RequestDto
           Firstname: "", // Correspond à la propriété User.Firstname de RequestDto
           Longitude: null, // Correspond à la propriété Longitude de RequestDto
           Latitude: null, // Correspond à la propriété Latitude de RequestDto
-        },
+      
       },
+      idTypes: [], // Une liste pour stocker les noms d'id type depuis l'API
     };
+  },
+  mounted() {
+    // Effectuez la requête GET pour obtenir les noms d'id type
+    axios
+      .get("https://localhost:7129/api/RequestType")
+      .then((response) => {
+        // Stockez les noms d'id type dans la liste idTypes
+        this.idTypes =  this.idTypes = response.data.map((idType) => idType.title);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des id types :", error);
+      });
   },
   methods: {
     submitRequest() {
-  axios
-    .post("https://localhost:7129/api/Request", this.model.composant)
-    .then((response) => {
-      console.log("Données insérées avec succès :", response.data);
-      alert("Données insérées avec succès");
+      // Convertissez la valeur de Latitude rt logitude  en décimal
+      this.req.Latitude = parseFloat(this.req.Latitude);
+      this.req.Longitude=parseFloat(this.req.Longitude);
+      console.log(this.req); // Affichez l'objet JSON dans la console
 
-    //   // Réinitialisez les champs du formulaire
-    //   this.model.composant.Title = "";
-    //   this.model.composant.Description = "";
-    //   this.model.composant.titlereq = "";
-    //   this.model.composant.Firstname = "";
-    //   this.model.composant.Longitude = null;
-    //   this.model.composant.Latitude = null;
-    })
-    .catch((error) => {
-      console.error("Erreur lors de la requête POST :", error.response);
-      alert("Erreur lors de l'insertion des données");
-    });
-}
+      axios
+   
+        .post("https://localhost:7129/api/Request" ,this.req)
+        
+
+        .then((response) => {
+          console.log("Données insérées avec succès :", response.data);
+          alert("Données insérées avec succès");
+
+          // Réinitialisez les champs du formulaire
+          this.req.Title = "";
+          this.req.Description = "";
+          this.req.id_type = "";
+          this.req.Firstname = "";
+          this.req.Longitude = null;
+          this.req.Latitude = null;
+        })
+        .catch((error) => {
+         
+          console.log("Erreur lors de la requête POST :", error.response);
+          alert("Erreur lors de l'insertion des données");
+        });
+    },
   },
-
-  
 };
 </script>
 
 <style scoped>
-
-
 div {
   text-align: center;
   margin: 20px;
@@ -100,7 +125,8 @@ label {
 
 input[type="text"],
 input[type="number"],
-textarea {
+textarea,
+select.form-input {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
