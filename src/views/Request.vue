@@ -41,7 +41,9 @@ export default {
   data() {
     return {
     
-        req: {
+        req:
+        
+        {
           Title: "", // Correspond à la propriété Title de RequestDto
           Description: "", // Correspond à la propriété Description de RequestDto
           id_type: "", // Correspond à la propriété RequestType.title de RequestDto
@@ -74,7 +76,7 @@ export default {
 
       axios
    
-        .post("https://localhost:7129/api/Request" ,this.req)
+        .post("https://localhost:7129/api/Request" , this.req)
         
 
         .then((response) => {
