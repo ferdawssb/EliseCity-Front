@@ -15,6 +15,11 @@ const router = createRouter({
       name: 'container',
       component: () => import('../views/Login.vue')
     },
+    {
+      path: '/espaceadmin',
+      name: 'EspaceAd',
+      component: () => import('../views/EspaceAd.vue')
+    },
     
     {
       path: '/gestionuser',

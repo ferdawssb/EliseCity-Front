@@ -3,22 +3,16 @@
     <h2>Formulaire d'Insertion de Demande</h2>
     <form @submit.prevent="submitRequest">
       <label for="title">Titre</label>
-      <input type="text" 
-      id="title"
-      v-model="req.Title" />
+      <input type="text" id="title" v-model="req.Title" />
 
       <label for="description">Description</label>
-      <textarea
-        id="description"
-        v-model="req.Description"
-      ></textarea>
+      <textarea id="description" v-model="req.Description"></textarea>
 
       <label for="requestType">Type de Demande</label>
-    <select id="requestType" v-model="req.id_type">
-      <option value="">Sélectionnez un type</option>
-      <option v-for="idType in idTypes" :key="idType">{{ idType }}</option>
-    </select>
-
+      <select id="requestType" v-model="req.id_type">
+        <option value="">Sélectionnez un type</option>
+        <option v-for="idType in idTypes" :key="idType">{{ idType }}</option>
+      </select>
 
       <label for="user">Nom de l'Utilisateur</label>
       <input type="text" id="user" v-model="req.Firstname" />
@@ -40,17 +34,13 @@ import axios from "axios";
 export default {
   data() {
     return {
-    
-        req:
-        
-        {
-          Title: "", // Correspond à la propriété Title de RequestDto
-          Description: "", // Correspond à la propriété Description de RequestDto
-          id_type: "", // Correspond à la propriété RequestType.title de RequestDto
-          Firstname: "", // Correspond à la propriété User.Firstname de RequestDto
-          Longitude: null, // Correspond à la propriété Longitude de RequestDto
-          Latitude: null, // Correspond à la propriété Latitude de RequestDto
-      
+      req: {
+        Title: "",
+        Description: "",
+        id_type: "",
+        Firstname: "",
+        Longitude: null,
+        Latitude: null,
       },
       idTypes: [], // Une liste pour stocker les noms d'id type depuis l'API
     };
@@ -60,8 +50,10 @@ export default {
     axios
       .get("https://localhost:7129/api/RequestType")
       .then((response) => {
-        // Stockez les noms d'id type dans la liste idTypes
-        this.idTypes =  this.idTypes = response.data.map((idType) => idType.title);
+        // Stockez les noms de type de request dans la liste idTypes
+        this.idTypes = this.idTypes = response.data.map(
+          (idType) => idType.title
+        );
       })
       .catch((error) => {
         console.error("Erreur lors de la récupération des id types :", error);
@@ -69,15 +61,15 @@ export default {
   },
   methods: {
     submitRequest() {
-      // Convertissez la valeur de Latitude rt logitude  en décimal
+      // Convertissez la valeur de Latitude et logitude  en décimal
       this.req.Latitude = parseFloat(this.req.Latitude);
-      this.req.Longitude=parseFloat(this.req.Longitude);
+      this.req.Longitude = parseFloat(this.req.Longitude);
+
       console.log(this.req); // Affichez l'objet JSON dans la console
 
       axios
-   
-        .post("https://localhost:7129/api/Request" , this.req)
-        
+
+        .post("https://localhost:7129/api/Request", this.req)
 
         .then((response) => {
           console.log("Données insérées avec succès :", response.data);
@@ -92,7 +84,6 @@ export default {
           this.req.Latitude = null;
         })
         .catch((error) => {
-         
           console.log("Erreur lors de la requête POST :", error.response);
           alert("Erreur lors de l'insertion des données");
         });

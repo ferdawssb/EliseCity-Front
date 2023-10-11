@@ -12,8 +12,12 @@
         <button type="button" class="btn btn-primary btn-lg custom-btn">Gestion des utilisateurs</button>
         <button type="button" class="btn btn-primary btn-lg custom-btn">Gestion des thémes</button>
         <button type="button" class="btn btn-primary btn-lg custom-btn">Suivie des demandes</button>
-        <button type="button" class="btn btn-primary btn-lg custom-btn">Déposer une demande</button>
-        <router-link to="/profil">
+        <RouterLink :to="'/request'" class="btn btn-primary float-end">
+          Déposer une demande
+                </RouterLink>
+        <!-- <router-link to="/request" >
+        <button type="button" class="btn btn-primary btn-lg custom-btn">Déposer une demande</button></router-link> -->
+        <router-link to = "/profil">
         <button type="button" class="btn btn-primary btn-lg custom-btn">Gestion de profile</button></router-link> 
         <button type="button" class="btn btn-primary btn-lg custom-btn">Statistiques</button>
         
