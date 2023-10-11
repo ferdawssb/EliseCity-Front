@@ -3,25 +3,25 @@
     <h2>Formulaire d'Insertion de Demande</h2>
     <form @submit.prevent="submitRequest">
       <label for="title">Titre</label>
-      <input type="text" id="title" v-model="req.Title" />
+      <input type="text" id="title" v-model="req.title" />
 
       <label for="description">Description</label>
-      <textarea id="description" v-model="req.Description"></textarea>
+      <textarea id="description" v-model="req.description"></textarea>
 
       <label for="requestType">Type de Demande</label>
-      <select id="requestType" v-model="req.id_type">
+      <select id="requestType" v-model="req.requestType">
         <option value="">Sélectionnez un type</option>
         <option v-for="idType in idTypes" :key="idType">{{ idType }}</option>
       </select>
 
       <label for="user">Nom de l'Utilisateur</label>
-      <input type="text" id="user" v-model="req.Firstname" />
+      <input type="text" id="user" v-model="req.user" />
 
       <label for="longitude">Longitude </label>
-      <input type="text" id="longitude" v-model="req.Longitude" />
+      <input type="text" id="longitude" v-model="req.longitude" />
 
       <label for="latitude">Latitude</label>
-      <input type="text" id="latitude" v-model="req.Latitude" />
+      <input type="text" id="latitude" v-model="req.latitude" />
 
       <button type="submit">Insérer</button>
     </form>
@@ -35,12 +35,12 @@ export default {
   data() {
     return {
       req: {
-        Title: "",
-        Description: "",
-        id_type: "",
-        Firstname: "",
-        Longitude: null,
-        Latitude: null,
+        title: "",
+        description: "",
+        requestType: "",
+        user: "",
+        longitude: null,
+        latitude: null,
       },
       idTypes: [], // Une liste pour stocker les noms d'id type depuis l'API
     };
@@ -62,8 +62,8 @@ export default {
   methods: {
     submitRequest() {
       // Convertissez la valeur de Latitude et logitude  en décimal
-      this.req.Latitude = parseFloat(this.req.Latitude);
-      this.req.Longitude = parseFloat(this.req.Longitude);
+      this.req.Latitude = parseFloat(this.req.latitude);
+      this.req.Longitude = parseFloat(this.req.latitude);
 
       console.log(this.req); // Affichez l'objet JSON dans la console
 
@@ -76,12 +76,12 @@ export default {
           alert("Données insérées avec succès");
 
           // Réinitialisez les champs du formulaire
-          this.req.Title = "";
-          this.req.Description = "";
-          this.req.id_type = "";
-          this.req.Firstname = "";
-          this.req.Longitude = null;
-          this.req.Latitude = null;
+          this.req.title = "";
+          this.req.description = "";
+          this.req.requestType = "";
+          this.req.user = "";
+          this.req.longitude = null;
+          this.req.latitude = null;
         })
         .catch((error) => {
           console.log("Erreur lors de la requête POST :", error.response);
