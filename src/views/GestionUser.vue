@@ -1,8 +1,11 @@
 <template>
   <div class="container">
-    <div class="card">
+  <div class="card">
       <div class="card-header">
         <h4>Users</h4>
+        <RouterLink to="/upsertUser/" class="btn btn-primary float-end">
+          Ajouter user
+          </RouterLink>
       </div>
       <div class="card-body">
         <table class="table table-bordered">
@@ -15,20 +18,19 @@
               <th>Email</th>
               <th>CreateAt</th>
               <th>UpdateAt</th>
-
+              <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
             <tr v-for="(user, index) in User" :key="index">
-
               <td>{{ user.id }}</td>
               <td>{{ user.firstname }}</td>
               <td>{{ user.lastname }}</td>
               <td>{{ user.mobile }}</td>
               <td>{{ user.login }}</td>
               <td>{{ user.createAt }}</td>
-              <td>{{ user.updateAt}}</td>
+              <td>{{ user.updateAt }}</td>
 
               <td>
                 <button
@@ -38,7 +40,10 @@
                 >
                   Delete
                 </button>
-                <RouterLink :to="  user.id + '/updateUser'" class="btn btn-primary float-end">
+                <RouterLink
+                  :to="'/upsertUser/'+user.id"
+                  class="btn btn-primary float-end"
+                >
                   Update
                 </RouterLink>
               </td>
@@ -48,13 +53,19 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import axios from "axios";
-
+import "vue-toast-notification/dist/theme-bootstrap.css";
+import { useToast } from "vue-toast-notification";
 
 export default {
+  setup() {
+    const toast = useToast();
+    return { toast };
+  },
   data() {
     return {
       User: [],
@@ -94,6 +105,7 @@ export default {
               "Erreur lors de la suppression de l'utilisateur :",
               error
             );
+            this.toast.error("Erreur lors de la récupération de l'utilisateur");
           });
       }
     },
@@ -101,9 +113,5 @@ export default {
 };
 </script>
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #abe9e6;
-}
+
 </style>

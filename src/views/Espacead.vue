@@ -1,20 +1,75 @@
-<script>
-import EspaceAdmin from '@/components/EspaceAdmin.vue'; 
-
-export default {
-  components: {
-    EspaceAdmin}
-  }
-
- 
-</script>
 <template>
-   
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center mb-4">
+        <h1>Espace Admin</h1>
+      </div>
 
-        <EspaceAdmin>
-          
-            </EspaceAdmin>       
-   
+      <div class="col-12 col-md-6">
+        <div class="btn-group-vertical w-100" role="group">
+          <router-link to="/gestionuser" class="btn btn-primary custom-btn mb-3">
+            Gestion des utilisateurs
+          </router-link>
+
+          <router-link to="/themes" class="btn btn-primary custom-btn mb-3">
+            Gestion des thèmes
+          </router-link>
+
+          <router-link to="/requests" class="btn btn-primary custom-btn mb-3">
+            Suivi des demandes
+          </router-link>
+
+          <router-link to="/request" class="btn btn-primary custom-btn mb-3">
+            Déposer une demande
+          </router-link>
+
+          <router-link to="/profile" class="btn btn-primary custom-btn mb-3">
+            Gestion de profil
+          </router-link>
+
+          <button
+            type="button"
+            class="btn btn-primary custom-btn mb-3"
+          >
+            Statistiques
+          </button>
+        </div>
+      </div>
+      <router-link to="/" class="col-12 text-center mt-4" >
+      <div class="btn btn-danger">
+        Déconnexion
+      </div>
+          </router-link>
+
+    
+    </div>
+  </div>
 </template>
-<style>
-</style>  
+
+<script>
+export default {
+  name: "EspaceAdmin",
+};
+</script>
+
+<style scoped>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #abe9e6;
+}
+/* Style personnalisé pour les boutons */
+.custom-btn {
+  background-color: #00807a;
+  border-color: #00807a;
+  color: white;
+}
+
+/* Style personnalisé pour la couleur de survol et de clic */
+.custom-btn:hover,
+.custom-btn:active {
+  background-color: #6f7676 !important;
+  border-color: #6f7676 !important;
+  box-shadow: none; /* Désactive l'ombre au clic */
+}
+</style>

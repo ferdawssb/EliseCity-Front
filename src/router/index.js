@@ -27,9 +27,9 @@ const router = createRouter({
       component: () => import('../views/GestionUser.vue')
     },
     {
-      path:'/:id/updateUser' ,
-      name: 'UserUpdate',
-      component: () => import('../views/UpdateUser.vue'),
+      path:'/upsertUser/:id?' ,
+      name: 'UpsertUser',
+      component: () => import('../views/UpsertUser.vue'),
       props: true 
     },
     {
@@ -38,11 +38,6 @@ const router = createRouter({
       component: () => import('../views/Request.vue'),
       props: true 
     }
-    
-    
-    
-    
-    
   ]
 })
 

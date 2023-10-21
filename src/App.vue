@@ -4,19 +4,19 @@ import { RouterView } from "vue-router";
 
 <template>
   <div>
-    <nav class="navbar" style="background-color: #00807a">
+    <nav class="navbar mb-4" style="background-color: #00807a">
       <div class="container-fluid">
 
         <a class="navbar-brand" style="color: #FFFFFF" href="#">Elise City</a>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"  style="color: #FFFFFF" >Accueil</a>
+            <router-link class="nav-link active" aria-current="page" :to="{name:'home'}"  style="color: #FFFFFF" >Accueil</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color: #FFFFFF" href="#">Suivie des demandes</a>
+            <router-link class="nav-link" style="color: #FFFFFF" :to="{name:'home'}">Suivie des demandes</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="color: #FFFFFF"  href="#">Espace Administrateur</a>
+            <router-link class="nav-link" style="color: #FFFFFF"  :to="{name:'EspaceAd'}">Espace Administrateur</router-link>
           </li>
         </ul>
       </div>
@@ -28,6 +28,6 @@ import { RouterView } from "vue-router";
   </div>
 </template>
 
-<style scoped>
+<style >
 
 </style>
