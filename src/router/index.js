@@ -37,6 +37,12 @@ const router = createRouter({
       name: 'Request',
       component: () => import('../views/Request.vue'),
       props: true 
+    },
+    {
+      path:'/gestionTheme' ,
+      name: 'ThemeManagement',
+      component: () => import('../views/GestionTheme.vue'),
+      props: true 
     }
   ]
 })

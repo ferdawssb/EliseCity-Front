@@ -11,7 +11,7 @@
             Gestion des utilisateurs
           </router-link>
 
-          <router-link to="/themes" class="btn btn-primary custom-btn mb-3">
+          <router-link to="/gestionTheme" class="btn btn-primary custom-btn mb-3">
             Gestion des thèmes
           </router-link>
 
