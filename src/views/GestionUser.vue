@@ -132,7 +132,7 @@ export default {
 }
 
 .delete-button:hover {
-  background-color:  #00807a; /* Couleur de survol de bouton "Delete" */
+  background-color: #00807a; /* Couleur de survol de bouton "Delete" */
 }
 
 .update-button {
@@ -140,14 +140,6 @@ export default {
 }
 
 .update-button:hover {
-  background-color:  #00807a; /* Couleur de survol de bouton "Update" */
+  background-color: #00807a; /* Couleur de survol de bouton "Update" */
 }
-
 </style>
-
-
-
-
-
-
-
