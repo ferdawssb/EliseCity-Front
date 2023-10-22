@@ -4,27 +4,50 @@
     <form @submit.prevent="submitRequest" class="mt-4">
       <div class="form-group">
         <label for="title"><i class="fas fa-heading"></i> Titre</label>
-        <input type="text" id="title" v-model="req.title" class="form-control rounded-pill" />
+        <input
+          type="text"
+          id="title"
+          v-model="req.title"
+          class="form-control rounded-pill"
+        />
       </div>
 
       <div class="form-group">
-        <label for="description"><i class="fas fa-file-alt"></i> Description</label>
-        <textarea id="description" v-model="req.description" class="form-control rounded" rows="4"></textarea>
+        <label for="description"
+          ><i class="fas fa-file-alt"></i> Description</label
+        >
+        <textarea
+          id="description"
+          v-model="req.description"
+          class="form-control rounded"
+          rows="4"
+        ></textarea>
       </div>
 
       <div class="form-group">
-        <label for="requestType"><i class="fas fa-tags"></i> Type de Demande</label>
-        <select id="requestType" v-model="req.IdType" class="form-control rounded-pill">
+        <label for="requestType"
+          ><i class="fas fa-tags"></i> Type de Demande</label
+        >
+        <select
+          id="requestType"
+          v-model="req.IdType"
+          class="form-control rounded-pill"
+        >
           <option value="">Sélectionnez un type</option>
           <option v-for="idType in idTypes" :key="idType.id" :value="idType.id">
             {{ idType.title }}
           </option>
         </select>
       </div>
-
       <div class="form-group">
-        <label for="user"><i class="fas fa-user"></i> Nom de l'Utilisateur</label>
-        <select id="user" v-model="req.IdUser" class="form-control rounded-pill">
+        <label for="user"
+          ><i class="fas fa-user"></i> Nom de l'Utilisateur</label
+        >
+        <select
+          id="user"
+          v-model="req.IdUser"
+          class="form-control rounded-pill"
+        >
           <option value="">Sélectionnez un utilisateur</option>
           <option v-for="user in users" :key="user.id" :value="user.id">
             {{ user.firstname + " " + user.lastname }}
@@ -34,24 +57,38 @@
 
       <div class="form-group">
         <label for="longitude"><i class="fas fa-globe"></i> Longitude</label>
-        <input type="text" id="longitude" v-model="req.longitude" class="form-control rounded-pill" readonly />
+        <input
+          type="text"
+          id="longitude"
+          v-model="req.longitude"
+          class="form-control rounded-pill"
+          readonly
+        />
       </div>
 
       <div class="form-group">
         <label for="latitude"><i class="fas fa-globe"></i> Latitude</label>
-        <input type="text" id="latitude" v-model="req.latitude" class="form-control rounded-pill" readonly />
+        <input
+          type="text"
+          id="latitude"
+          v-model="req.latitude"
+          class="form-control rounded-pill"
+          readonly
+        />
       </div>
 
       <div id="mapContainer" class="mt-4"></div>
-      
 
-      <button type="submit" class="btn btn-success btn-lg btn-block rounded-pill mt-4">Enregistré </button>
-      <div class="mt-4" style="margin-bottom: 20px;"></div>
-
+      <button
+        type="submit"
+        class="btn btn-success btn-lg btn-block rounded-pill mt-4"
+      >
+        Enregistré
+      </button>
+      <div class="mt-4" style="margin-bottom: 20px"></div>
     </form>
   </div>
 </template>
-
 
 <script>
 import "leaflet/dist/leaflet.css";
@@ -59,6 +96,7 @@ import axios from "axios";
 import L from "leaflet";
 import "../../public/Tween.js";
 import "../../public/leaflet.curve.js";
+import "vue-toast-notification";
 
 export default {
   data() {
@@ -123,41 +161,45 @@ export default {
   },
   methods: {
     submitRequest() {
-      // Convertissez la valeur de Latitude et logitude  en décimal
-      this.req.Latitude = parseFloat(this.req.latitude);
-      this.req.Longitude = parseFloat(this.req.latitude);
-      // to string
-      this.req.IdType = this.req.IdType.toString();
-      this.req.IdUser = this.req.IdUser.toString();
-      axios
-        .post("https://localhost:7129/api/Request", this.req)
-        .then((response) => {
-          console.log("Données insérées avec succès :", response.data);
-          alert("Données insérées avec succès");
-
-          // Réinitialisez les champs du formulaire
-          this.req.title = "";
-          this.req.description = "";
-          this.req.longitude = null;
-          this.req.latitude = null;
-          this.req.IdType = null;
-          this.req.IdUser = null;
-          const oldMarker = this.map._layers[Object.keys(this.map._layers)[1]];
-          if (oldMarker) {
-            this.map.removeLayer(oldMarker);
-          }
-        })
-        .catch((error) => {
-          console.log("Erreur lors de la requête POST :", error.response);
-          alert("Erreur lors de l'insertion des données");
+      if (!this.req.title || !this.req.IdType || !this.req.IdUser) {
+        this.$toast.error("Veuillez remplir tous les champs requis", {
+          icon: "error",
         });
+      } else {
+        // Convertissez la valeur de Latitude et logitude  en décimal
+        this.req.Latitude = parseFloat(this.req.latitude);
+        this.req.Longitude = parseFloat(this.req.latitude);
+        // to string
+        this.req.IdType = this.req.IdType.toString();
+        this.req.IdUser = this.req.IdUser.toString();
+        axios
+          .post("https://localhost:7129/api/Request", this.req)
+
+          .then((response) => {
+            this.$toast.success("Données insérées avec succès");
+            // Réinitialisez les champs du formulaire
+            this.req.title = "";
+            this.req.description = "";
+            this.req.longitude = null;
+            this.req.latitude = null;
+            this.req.IdType = null;
+            this.req.IdUser = null;
+            const oldMarker =
+              this.map._layers[Object.keys(this.map._layers)[1]];
+            if (oldMarker) {
+              this.map.removeLayer(oldMarker);
+            }
+          })
+          .catch((error) => {
+            this.$toast.error("Erreur lors de l'insertion des données");
+          });
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-
 .text-center {
   text-align: center;
 }
@@ -183,8 +225,7 @@ export default {
 }
 
 #mapContainer {
-  width: 100%; /* Remplissez la largeur disponible */
-  height: 300px; /* Ajustez la hauteur comme souhaité */
+  width: 100%;
+  height: 300px;
 }
-
 </style>

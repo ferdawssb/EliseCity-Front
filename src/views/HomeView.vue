@@ -6,8 +6,10 @@
     </header>
     <section class="features">
       <div class="feature">
-        <i class="fas fa-map-marker-alt"></i>
+        <router-link to="/request" class="admin-link" style="color: #00807a;">
+        <i class="fas fa-map-marker-alt" ></i>
         <h2>Déposer une demande</h2>
+      </router-link>
         <p>
           Déposez facilement une demande en spécifiant la localisation, le thème, la description et les documents pertinents.
         </p>
@@ -19,9 +21,11 @@
           Visualisez l'état de vos demandes : en attente, en cours de traitement ou traitées, et ajoutez des commentaires.
         </p>
       </div>
-      <div class="feature">
-        <i class="fas fa-users-cog"></i>
-        <h2>Espace Administrateur</h2>
+      <div class="feature" >
+        <router-link to="/espaceadmin" class="admin-link" style="color: #00807a;">
+          <i class="fas fa-users-cog"></i>
+          <h2>Espace Administrateur</h2>
+        </router-link>
         <p>
           Gérez les utilisateurs, les thèmes, suivez les demandes, modifiez les états et consultez des statistiques.
         </p>
