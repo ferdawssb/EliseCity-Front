@@ -78,7 +78,8 @@ body {
   background-color: #00807a; /* Couleur bleue par exemple */
   color: #fff; /* Texte en blanc */
   padding: 10px 20px; /* Ajustez les marges intérieures pour l'apparence souhaitée */
- border-radius: 6px; /* Ajoutez une bordure arrondie si nécessaire */
+  border: none; /* Supprimez la bordure si nécessaire */
+  border-radius: 4px; /* Ajoutez une bordure arrondie si nécessaire */
   /* Ajoutez d'autres styles au besoin */
 }
 </style>

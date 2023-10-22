@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-  <div class="card">
+    <div class="card">
       <div class="card-header">
         <h4>Users</h4>
-        <RouterLink to="/upsertUser/" class="btn btn-primary float-end">
+        <RouterLink to="/upsertUser/" class="my-custom-button float-end">
           Ajouter user
-          </RouterLink>
+        </RouterLink>
       </div>
       <div class="card-body">
         <table class="table table-bordered">
@@ -36,13 +36,13 @@
                 <button
                   @click="deleteUser(index)"
                   type="button"
-                  class="btn btn-danger"
+                  class="my-custom-button delete-button"
                 >
                   Delete
                 </button>
                 <RouterLink
-                  :to="'/upsertUser/'+user.id"
-                  class="btn btn-primary float-end"
+                  :to="'/upsertUser/' + user.id"
+                  class="my-custom-button update-button"
                 >
                   Update
                 </RouterLink>
@@ -53,7 +53,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -113,5 +112,42 @@ export default {
 };
 </script>
 <style>
+.my-custom-button {
+  background-color: #00807a; /* Couleur bleue - Modifiez-la selon vos préférences */
+  color: #fff; /* Texte en blanc */
+  padding: 8px 16px; /* Ajustez les marges intérieures pour l'apparence souhaitée */
+  border: none; /* Supprime la bordure */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur main au survol */
+  transition: background-color 0.3s; /* Animation de transition pour la couleur de fond */
+  margin-right: 10px;
+}
+
+.my-custom-button:hover {
+  background-color: #005d56; /* Couleur de survol - Modifiez-la selon vos préférences */
+}
+
+.delete-button {
+  background-color: #00807a; /* Couleur de bouton "Delete" */
+}
+
+.delete-button:hover {
+  background-color:  #00807a; /* Couleur de survol de bouton "Delete" */
+}
+
+.update-button {
+  background-color: #00807a; /* Couleur de bouton "Update" */
+}
+
+.update-button:hover {
+  background-color:  #00807a; /* Couleur de survol de bouton "Update" */
+}
 
 </style>
+
+
+
+
+
+
+
