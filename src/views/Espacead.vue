@@ -35,11 +35,13 @@
           </button>
         </div>
       </div>
-      <router-link to="/" class="col-12 text-center mt-4" >
-      <div class="btn btn-danger">
-        Déconnexion
-      </div>
-          </router-link>
+      <router-link to="/" class="col-12 text-center mt-4">
+  <div class="btn">
+    <div class="my-custom-button">
+      Déconnexion
+    </div>
+  </div>
+</router-link>
 
     
     </div>
@@ -71,5 +73,12 @@ body {
   background-color: #6f7676 !important;
   border-color: #6f7676 !important;
   box-shadow: none; /* Désactive l'ombre au clic */
+}
+.my-custom-button {
+  background-color: #00807a; /* Couleur bleue par exemple */
+  color: #fff; /* Texte en blanc */
+  padding: 10px 20px; /* Ajustez les marges intérieures pour l'apparence souhaitée */
+ border-radius: 6px; /* Ajoutez une bordure arrondie si nécessaire */
+  /* Ajoutez d'autres styles au besoin */
 }
 </style>
