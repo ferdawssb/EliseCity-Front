@@ -78,9 +78,11 @@ export default {
   },
   mounted() {
     if (this.id) {
-      axios.get(`https://localhost:7129/api/User/${this.id}`).then((response) => {
-        this.currentUser = response.data;
-      });
+      axios
+        .get(`https://localhost:7129/api/User/${this.id}`)
+        .then((response) => {
+          this.currentUser = response.data;
+        });
     }
   },
 
@@ -110,7 +112,7 @@ export default {
               error
             );
           });
-      }else{
+      } else {
         axios
           .post(`https://localhost:7129/api/User/`, this.currentUser)
 

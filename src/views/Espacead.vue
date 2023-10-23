@@ -7,11 +7,17 @@
 
       <div class="col-12 col-md-6">
         <div class="btn-group-vertical w-100" role="group">
-          <router-link to="/gestionuser" class="btn btn-primary custom-btn mb-3">
+          <router-link
+            to="/gestionuser"
+            class="btn btn-primary custom-btn mb-3"
+          >
             Gestion des utilisateurs
           </router-link>
 
-          <router-link to="/gestionTheme" class="btn btn-primary custom-btn mb-3">
+          <router-link
+            to="/gestionTheme"
+            class="btn btn-primary custom-btn mb-3"
+          >
             Gestion des thèmes
           </router-link>
 
@@ -27,23 +33,16 @@
             Gestion de profil
           </router-link>
 
-          <button
-            type="button"
-            class="btn btn-primary custom-btn mb-3"
-          >
+          <button type="button" class="btn btn-primary custom-btn mb-3">
             Statistiques
           </button>
         </div>
       </div>
       <router-link to="/" class="col-12 text-center mt-4">
-  <div class="btn">
-    <div class="my-custom-button">
-      Déconnexion
-    </div>
-  </div>
-</router-link>
-
-    
+        <div class="btn">
+          <div class="my-custom-button">Déconnexion</div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>

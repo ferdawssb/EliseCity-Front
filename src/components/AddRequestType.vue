@@ -9,7 +9,7 @@
           placeholder="Nouveau Type de Demande"
         />
         <div class="input-group-append">
-          <button type="submit" class="btn ">Ajouter</button>
+          <button type="submit" class="btn">Ajouter</button>
         </div>
       </div>
     </form>
@@ -43,8 +43,8 @@ export default {
 
 <style scoped>
 button {
-  background-color:#00807a; 
-  color: #fff; 
+  background-color: #00807a;
+  color: #fff;
   border: none;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-color">
-    <br>
-    <br>
+    <br />
+    <br />
     <h1 style="color: #00807a">Bienvenue dans l'espace administrateur!</h1>
     <blockquote class="blockquote">
       <p class="text-center" style="color: #ffffff">
@@ -41,7 +41,6 @@
             type="submit"
             class="btn btn-primary"
             style="background-color: #00807a"
-            
           >
             Connection
           </button>
@@ -52,33 +51,31 @@
 </template>
 
 <script>
-import {accountService} from '@/_services'
-import EspaceAdmin from '../components/EspaceAdmin.vue'
+import { accountService } from "@/_services";
+import EspaceAdmin from "../components/EspaceAdmin.vue";
 export default {
-    data() {
-      return {
-        user: {
-          email: "",
-          password: "",
-        },
-      };
-    },
-    methods: {
-      login() {
-        accountService
-          .login(this.user)
-          .then((res) => {
-            console.log(res.data);
-            accountService.saveToken (res.data.access_token)   // Cookie expire après 1 jour
-            // Redirigez vers la page authentifiée
-            this.$router.push({ name: "espacead" });
-          })
-          .catch((err) => console.log(err));
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
       },
-    }, 
-  };
-
-
+    };
+  },
+  methods: {
+    login() {
+      accountService
+        .login(this.user)
+        .then((res) => {
+          console.log(res.data);
+          accountService.saveToken(res.data.access_token); // Cookie expire après 1 jour
+          // Redirigez vers la page authentifiée
+          this.$router.push({ name: "espacead" });
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
 </script>
 
 <style>
