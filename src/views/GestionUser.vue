@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header">
         <h4>Users</h4>
-        <RouterLink to="/upsertUser/" class="my-custom-button float-end">
+        <RouterLink to="/upsertUser/" class="my-custom-button float-end update-button ">
           Ajouter user
         </RouterLink>
       </div>
@@ -113,7 +113,6 @@ export default {
 </script>
 <style>
 .my-custom-button {
-  background-color: #00807a; /* Couleur bleue - Modifiez-la selon vos préférences */
   color: #fff; /* Texte en blanc */
   padding: 8px 16px; /* Ajustez les marges intérieures pour l'apparence souhaitée */
   border: none; /* Supprime la bordure */
@@ -123,23 +122,14 @@ export default {
   margin-right: 10px;
 }
 
-.my-custom-button:hover {
-  background-color: #005d56; /* Couleur de survol - Modifiez-la selon vos préférences */
-}
-
 .delete-button {
-  background-color: #00807a; /* Couleur de bouton "Delete" */
-}
-
-.delete-button:hover {
-  background-color: #00807a; /* Couleur de survol de bouton "Delete" */
+  background-color: #FF0000; /* Fond rouge pour le bouton "Delete" */
 }
 
 .update-button {
-  background-color: #00807a; /* Couleur de bouton "Update" */
+  background-color: #0000FF; /* Fond bleu pour le bouton "Update" */
 }
 
-.update-button:hover {
-  background-color: #00807a; /* Couleur de survol de bouton "Update" */
-}
+
+
 </style>
